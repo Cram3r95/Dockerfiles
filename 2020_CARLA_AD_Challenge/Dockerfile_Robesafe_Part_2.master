@@ -1,0 +1,27 @@
+# CARLA Autonomous Driving Challenge 2020
+# Carlos Gómez-Huélamo (RobeSafe research group - University of Alcalá)
+
+#FROM leaderbard-robesafe:part_1
+#FROM leaderbard-robesafe:v1
+
+# Continuation of the previous imagen in order to download and compile the latest version code
+
+# 6. Copy our team_code, compile and setup
+
+COPY .tmp/team_code ${TEAM_CODE_ROOT}/catkin_ws/src
+RUN cd ${TEAM_CODE_ROOT}/catkin_ws/src && \
+	git submodule update --init --recursive && \
+	cd ../ && catkin_make -j4 && \
+	echo "source ${TEAM_CODE_ROOT}/catkin_ws/devel/setup.bash" >> ~/.bashrc && \
+	. ${TEAM_CODE_ROOT}/catkin_ws/devel/setup.bash
+
+RUN chmod +x ${TEAM_CODE_ROOT}/catkin_ws/src/move_files.sh
+RUN cd ${TEAM_CODE_ROOT}/catkin_ws/src && ./move_files.sh
+
+ENV PYTHONPATH "/workspace/team_code/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/workspace/CARLA/PythonAPI/carla/dist/carla-leaderboard-py3x.egg":"${SCENARIO_RUNNER_ROOT}":"${CARLA_ROOT}/PythonAPI/carla":"${LEADERBOARD_ROOT}":${PYTHONPATH}
+
+# 7. Add entrypoint to source ROS and our workspace
+
+COPY ./ros-entrypoint.sh /
+RUN chmod +x /ros-entrypoint.sh
+ENTRYPOINT ["/ros-entrypoint.sh"]
