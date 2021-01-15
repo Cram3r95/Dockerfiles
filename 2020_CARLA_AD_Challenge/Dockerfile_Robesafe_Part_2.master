@@ -1,19 +1,22 @@
 # CARLA Autonomous Driving Challenge 2020
 # Carlos Gómez-Huélamo (RobeSafe research group - University of Alcalá)
 
-#FROM leaderbard-robesafe:part_1
-#FROM leaderbard-robesafe:v1
+FROM leaderboard-robesafe:part_1
 
 # Continuation of the previous imagen in order to download and compile the latest version code
 
 # 6. Copy our team_code, compile and setup
 
+# First of all, check that your ~/team_code folder (host) has the submodules initialized and updated
+ 
 COPY .tmp/team_code ${TEAM_CODE_ROOT}/catkin_ws/src
-RUN cd ${TEAM_CODE_ROOT}/catkin_ws/src && \
-	git submodule update --init --recursive && \
+
+RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc && \
+	. /opt/ros/kinetic/setup.sh && \
+	cd ${TEAM_CODE_ROOT}/catkin_ws/src && \
+	#git submodule update --init --recursive && \
 	cd ../ && catkin_make -j4 && \
-	echo "source ${TEAM_CODE_ROOT}/catkin_ws/devel/setup.bash" >> ~/.bashrc && \
-	. ${TEAM_CODE_ROOT}/catkin_ws/devel/setup.bash
+	echo "source ${TEAM_CODE_ROOT}/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 RUN chmod +x ${TEAM_CODE_ROOT}/catkin_ws/src/move_files.sh
 RUN cd ${TEAM_CODE_ROOT}/catkin_ws/src && ./move_files.sh
