@@ -166,7 +166,7 @@ RUN apt-get update && \
 	ros-kinetic-geodesy \
 	ros-kinetic-ros-numpy \
 	ros-kinetic-jsk-recognition-msgs && \
-	pip install rospkg PyYAML sympy
+	pip install rospkg PyYAML sympy pyquaternion
 
 # 5. Configure some CARLA Challenge environment variables
 
