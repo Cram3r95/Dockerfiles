@@ -129,13 +129,17 @@ RUN cd /workspace/installations && \
 ## Install the PCDet library
 
 RUN echo "export PATH=$PATH:/usr/local/cuda-9.0/bin" >> ~/.bashrc && \ 
-	echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64" >> ~/.bashrc
+    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64" >> ~/.bashrc
 
 ###########################################
 ##### Install using interactive shell #####
 
 #RUN cd /workspace/installations/OpenPCDet && \
 #	python setup.py develop
+
+# Modify the calib_file and cfg_root in the inference.py script (OpenPCDet-ROS, in the ROS workspace)
+# Modify the _BASE_CONFIG line int the pointpillars.yaml (in this case), located at the OpenPCDet library -> tools -> cfgs -> kitti_models
+# Include in the file pointpillar_7728.pth in the kitti_models folder (e.g. ~/t4ac_ws/src/t4ac_perception/detection/libraries/OpenPCDet/tools/cfgs/kitti_models/)
 
 ###########################################
 ###########################################
