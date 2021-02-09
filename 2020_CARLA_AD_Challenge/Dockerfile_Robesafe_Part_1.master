@@ -150,6 +150,9 @@ RUN mkdir -p /workspace/installations/darknet_ros_config
 COPY ./cfg /workspace/installations/darknet_ros_config
 COPY ./weights /workspace/installations/darknet_ros_config
 
+# Modify: Include the ROS message even if there is no detection
+# Comment this line (printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);) in image.c (darknet folder)
+
 # 4. Install ROS Kinetic
 
 ## Install ROS
