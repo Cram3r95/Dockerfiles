@@ -126,8 +126,6 @@ RUN cd /workspace/installations && \
 	cd ./dist && \
 	pip install spconv-1.2.1-cp37-cp37m-linux_x86_64.whl
 
-## Install the PCDet library
-
 RUN echo "export PATH=$PATH:/usr/local/cuda-9.0/bin" >> ~/.bashrc && \ 
     echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64" >> ~/.bashrc
 
