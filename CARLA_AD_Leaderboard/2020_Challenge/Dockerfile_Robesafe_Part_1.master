@@ -132,8 +132,8 @@ RUN echo "export PATH=$PATH:/usr/local/cuda-9.0/bin" >> ~/.bashrc && \
 ###########################################
 ##### Install using interactive shell #####
 
-#RUN cd /workspace/installations/OpenPCDet && \
-#	python setup.py develop
+RUN cd /workspace/installations/OpenPCDet && \
+	echo 'y' | python setup.py develop
 
 # Modify the calib_file and cfg_root in the inference.py script (OpenPCDet-ROS, in the ROS workspace)
 # Modify the _BASE_CONFIG line int the pointpillars.yaml (in this case), located at the OpenPCDet library -> tools -> cfgs -> kitti_models

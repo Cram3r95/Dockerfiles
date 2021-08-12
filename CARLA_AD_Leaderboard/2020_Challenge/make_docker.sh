@@ -33,7 +33,10 @@ cp -fr ${TEAM_CODE_ROOT} .tmp/team_code
 
 # build docker image
 
-docker build --force-rm -t leaderbard-robesafe:part_1 -f ${LEADERBOARD_ROOT}/scripts/Dockerfile_Robesafe_Part_1.master .
-docker build --force-rm -t leaderbard-robesafe:latest -f ${LEADERBOARD_ROOT}/scripts/Dockerfile_Robesafe_Part_2.master .
+ROOT=~/Dockerfiles/CARLA_AD_Leaderboard/2020_Challenge
+
+# docker build --force-rm -t uahrobesafe/carla-challenge:part-1 -f ${ROOT}/Dockerfile_Robesafe_Part_1.master .
+# docker build --force-rm -t uahrobesafe/carla-challenge:prueba -f ${ROOT}/Dockerfile_Robesafe_Part_2_old.master .
+docker build --force-rm -t uahrobesafe/carla-challenge:latest -f ${ROOT}/Dockerfile_Robesafe_Part_3.master .
 
 rm -fr .tmp
